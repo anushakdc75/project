@@ -27,24 +27,8 @@ class SimilarCase(BaseModel):
     similarity: float
 
 
-class AreaClusterItem(BaseModel):
-    location: str
-    complaint_count: int
-    dominant_department: str
-
-
-class EmergingAlertItem(BaseModel):
-    location: str
-    department: str
-    complaint_count: int
-    sentiment_spike: str
-    severity: str
-
-
 class ChatResponse(BaseModel):
-    reply: str
     answer: str
-    solution_steps: List[str]
     confidence: float
     department: str
     expected_resolution_time: str
@@ -80,11 +64,11 @@ class FeedbackRequest(BaseModel):
 
 
 class AnalyticsResponse(BaseModel):
-    sla_summary: dict
-    complaint_volume: dict
-    area_clusters: List[AreaClusterItem]
-    emerging_alerts: List[EmergingAlertItem]
-    sentiment_distribution: dict
+    total_complaints: int
+    open_cases: int
+    resolved_cases: int
+    avg_sla_hours: float
+    department_distribution: dict
 
 
 class TopicItem(BaseModel):
