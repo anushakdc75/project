@@ -13,11 +13,9 @@ export default function AIChatPage() {
     setText('')
     try {
       const { data } = await chat({ user_id: 1, message: userMessage.text })
-      const answer = data.reply || data.answer || 'Response received.'
-      setMessages((m) => [...m, { role: 'assistant', text: `${answer}\nConfidence: ${data.confidence}` }])
-    } catch (error) {
-      const detail = error?.response?.data?.detail
-      setMessages((m) => [...m, { role: 'assistant', text: detail ? `Error: ${detail}` : 'Error processing request.' }])
+      setMessages((m) => [...m, { role: 'assistant', text: `${data.answer}\nConfidence: ${data.confidence}` }])
+    } catch {
+      setMessages((m) => [...m, { role: 'assistant', text: 'Error processing request.' }])
     }
   }
 
