@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react'
 import { getAlerts, getAnalytics } from '../services/api'
 
 export default function AdminDashboardPage() {
-  const [analytics, setAnalytics] = useState({ sla_summary: {}, complaint_volume: {}, area_clusters: [], emerging_alerts: [] })
+  const [analytics, setAnalytics] = useState(null)
   const [alerts, setAlerts] = useState([])
 
   useEffect(() => {
-    getAnalytics().then(({ data }) => setAnalytics(data)).catch(() => setAnalytics({ error: 'Failed to load analytics' }))
-    getAlerts().then(({ data }) => setAlerts(data)).catch(() => setAlerts([{ error: 'Failed to load alerts' }]))
+    getAnalytics().then(({ data }) => setAnalytics(data))
+    getAlerts().then(({ data }) => setAlerts(data))
   }, [])
 
   return (
