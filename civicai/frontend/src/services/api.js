@@ -15,5 +15,3 @@ export const getTopics = () => api.get('/topics')
 export const getAlerts = () => api.get('/alerts')
 
 export default api
-
-export const submitIntake = (formData) => api.post('/complaint/intake', formData, { headers: { 'Content-Type': 'multipart/form-data' } })
