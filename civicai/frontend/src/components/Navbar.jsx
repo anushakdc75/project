@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 const links = [
   ['/', 'Home'],
-  ['/chat', 'Chat'],
+  ['/chat', 'AI Chat'],
   ['/history', 'History'],
   ['/tracker', 'Tracker'],
   ['/admin', 'Admin'],
@@ -11,11 +11,11 @@ const links = [
 
 export default function Navbar() {
   return (
-    <nav className="glass p-4 mb-6 flex flex-wrap gap-4 text-white justify-between items-center">
-      <h1 className="font-extrabold tracking-wide">CivicAI</h1>
-      <div className="flex gap-2 flex-wrap text-sm">
+    <nav className="glass p-4 mb-6 flex flex-wrap gap-4 text-white justify-between">
+      <h1 className="font-bold">CivicAI</h1>
+      <div className="flex gap-4 text-sm">
         {links.map(([to, label]) => (
-          <Link key={to} to={to} className="pill">{label}</Link>
+          <Link key={to} to={to} className="hover:text-cyan-300 transition">{label}</Link>
         ))}
       </div>
     </nav>

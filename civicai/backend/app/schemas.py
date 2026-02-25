@@ -27,30 +27,12 @@ class SimilarCase(BaseModel):
     similarity: float
 
 
-class AreaClusterItem(BaseModel):
-    location: str
-    complaint_count: int
-    dominant_department: str
-
-
-class EmergingAlertItem(BaseModel):
-    location: str
-    department: str
-    complaint_count: int
-    sentiment_spike: str
-    severity: str
-
-
 class ChatResponse(BaseModel):
-    reply: str
     answer: str
-    solution_steps: List[str]
     confidence: float
     department: str
     expected_resolution_time: str
     similar_cases: List[SimilarCase]
-    escalation_note: Optional[str] = None
-    is_live_authority_contact: bool = False
 
 
 class ComplaintCreate(BaseModel):
@@ -65,36 +47,6 @@ class ComplaintResponse(BaseModel):
     status: str
     sla_hours: int
 
-
-class IntakeResponse(BaseModel):
-    ticket_id: str
-    detected_issue: str
-    detected_department: str
-    confidence: float
-    location: Optional[str] = None
-    authority_notified: bool
-    authority_reference: Optional[str] = None
-
-
-
-
-class CallAssistanceRequest(BaseModel):
-    user_id: int = 1
-    citizen_name: str
-    phone_number: str
-    transcript: str
-    language: str = "en"
-    location: Optional[str] = None
-
-
-class CallAssistanceResponse(BaseModel):
-    ticket_id: Optional[str] = None
-    solution: str
-    solution_steps: List[str]
-    department: str
-    confidence: float
-    status: str
-    escalation_note: str
 
 class ComplaintStatusResponse(BaseModel):
     ticket_id: str
@@ -112,11 +64,11 @@ class FeedbackRequest(BaseModel):
 
 
 class AnalyticsResponse(BaseModel):
-    sla_summary: dict
-    complaint_volume: dict
-    area_clusters: List[AreaClusterItem]
-    emerging_alerts: List[EmergingAlertItem]
-    sentiment_distribution: dict
+    total_complaints: int
+    open_cases: int
+    resolved_cases: int
+    avg_sla_hours: float
+    department_distribution: dict
 
 
 class TopicItem(BaseModel):
